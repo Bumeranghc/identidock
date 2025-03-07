@@ -26,6 +26,8 @@ jobs:
       uses: docker/metadata-action@v5.7.0
       with:
         images: bumeranghc/identidock
+        tags: |
+          type=ref,event=branch,value={{commit_date 'YYYYMMDD-HHmmss'}}
 
     - name: Build and push Docker image
       id: push
