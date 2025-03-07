@@ -27,7 +27,7 @@ jobs:
       with:
         images: bumeranghc/identidock
         tags: |
-          type=raw,value=test
+          type=raw,value={{date 'YYYYMMDD-HHmmss' tz='Asia/Jerusalem'}}
 
     - name: Build and push Docker image
       id: push
