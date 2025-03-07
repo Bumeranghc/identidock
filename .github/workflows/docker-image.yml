@@ -27,7 +27,7 @@ jobs:
       with:
         images: bumeranghc/identidock
         tags: |
-          type=schedule,event=push,branch={{ github.ref_name }},value={{date 'YYYYMMDD-HHmmss'}}
+          type=schedule,event=push,branch=main,value={{date 'YYYYMMDD-HHmmss'}}
 
     - name: Build and push Docker image
       id: push
