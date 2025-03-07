@@ -7,13 +7,13 @@ cache = redis.StrictRedis(host='redis', port=6379, db=0)
 salt = "UNIQUE_SALT"
 default_name = "Specter Center"
 
+def get_name_vars(name: str):
+    salted_name = salt + name
+    return name, hashlib.sha256(salted_name.encode()).hexdigest()
+
 @app.route('/', methods=['GET', 'POST'])
 def mainpage():
-    name = default_name
-    if request.method == 'POST':
-        name = request.form['name']
-        salted_name = salt + name
-        name_hash = hashlib.sha256(salted_name.encode()).hexdigest()
+    name, name_hash = get_name_vars(request.form['name'] if request.method == 'POST' else default_name)
 
     header = "<html><head><title>Identidock</title></head><body>"
     body = '''<form method="POST">
